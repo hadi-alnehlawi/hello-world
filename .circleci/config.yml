@@ -1,20 +1,16 @@
 version: 2.1
 jobs:
-  print-hello:
+  build:
     docker:
-      - image: cimg/python:3.9.6
+      - image: cimg/base:2020.01
     steps:
-      - run: python --version
-      - run: echo print-hello
-  print-world:
-    docker:
-      - image: cimg/python:3.9.6
-    steps:
-      - run: python --version
-      - run: echo print-world
+      - run:
+          name: command to echo environments
+          command: |
+            echo hello ci commands
+
 
 workflows:
-  welcome:
+  test-env-variables:
     jobs:
-      - print-hello
-      - print-world
+      - build
