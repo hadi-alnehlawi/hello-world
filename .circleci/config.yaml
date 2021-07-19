@@ -1,23 +1,20 @@
 version: 2.1
-
 jobs:
   print-hello:
     docker:
       - image: cimg/python:3.9.6
     steps:
-      - python --version
-      - echo "print-hello"
-  print-word:
+      - run: python --version
+      - run: echo print-hello
+  print-world:
     docker:
-    - image: cimg/python:3.9.6
+      - image: cimg/python:3.9.6
     steps:
-      - python --version
-      - echo "print-world"
-
-
+      - run: python --version
+      - run: echo print-world
 
 workflows:
   welcome:
-    # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+      - print-hello
+      - print-world
